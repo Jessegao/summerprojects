@@ -19,11 +19,13 @@ def clean(string):
 def hasInvalidCharacter(section):
     return ':' in section #or '-' in section
 
+#profile = webdriver.FirefoxProfile()
+#profile.set_preference('browser.download.folderList', 2)
+#profile.set_preference('browser.download.manager.showWhenStarting', False)
+#profile.set_preference('browser.download.dir', os.getcwd())
+#profile.set_preference('browser.helperApps.neverAsk.saveToDisk', ('application/vnd.ms-excel'))
+#profile.set_preference("privacy.popups.disable_from_plugins", 3)
 profile = webdriver.FirefoxProfile()
-profile.set_preference('browser.download.folderList', 2)
-profile.set_preference('browser.download.manager.showWhenStarting', False)
-profile.set_preference('browser.download.dir', os.getcwd())
-profile.set_preference('browser.helperApps.neverAsk.saveToDisk', ('application/vnd.ms-excel'))
 driver = webdriver.Firefox(profile)
 
 print('in order for this to work, you need to set firefox\'s download to automatic and the youtube list needs to have a newline at the end')
@@ -50,24 +52,23 @@ for line in f:
 
     #starting the conversion
     #driver.get("http://www.youtube-mp3.org/")
-    driver.get("http://convert2mp3.net/en/")
+    driver.get("http://www.onlinevideoconverter.com/mp3-converter")
 
     #inputs url and hits submit
     #youtube_url_field = driver.find_element_by_id('youtube-url')
-    youtube_url_field = driver.find_element_by_id('#urlinput')
-    #youtube_url_field.clear()
-    youtube_url_field.send_keys(url
-    ????????????????????????????????????
-    driver.find_element_by_css_selectorid('.mainbtn , #urlinput').click()
+    youtube_url_field = driver.find_element_by_css_selector('#texturl')
+    youtube_url_field.clear()
+    youtube_url_field.send_keys(url)
+    driver.implicitly_wait(10)
+    driver.find_element_by_css_selector('#convert1').click()
 
-    #sets firefox profile
-    #fxProfile =
+    #wait = WebDriverWait(driver, 10)
+    #element = wait.until(EC.presence_of_element_located((By.ID, "downloadq")))
 
-    wait = WebDriverWait(driver, 10)
-    element = wait.until(EC.element_to_be_clickable((By.ID,'dl_link')))
     #driver.get(element.get_attribute('href'))
     #element.click()
-    driver.find_element_by_css_selector('#dl_link')
+    #driver.find_element_by_css_selector('#dl_link').click()
+    driver.find_element_by_class_name('download-button').click()
 
 
 #actions=ActionChanins(driver).click(firstnameField.send_key("T").lastnameField.send_keys("Gao").submitButton.click()
